@@ -1,0 +1,82 @@
+{
+  "HEADER": {
+    "SELECCIONA": "Alege dificultatea",
+    "JUGANDO": "Misiune în curs"
+  },
+  "INICIO": {
+    "TITULO": "CLONE",
+    "SUBTITULO": "Găsește clonele înainte să se închidă portalul! Fugi!!",
+    "LEYENDA_TITULO": "NIVELURI RICK ȘI MORTY",
+    "MODO_MEMORIA": "Memorie",
+    "RANKING": "Clasament",
+    "COMO_JUGAR": "Cum să joci",
+    "CERRAR_SESION": "Ieșire",
+    "TITULO_INTRUSO": "INTRUS",
+    "BADGE_INTRUSO": "# Investigație",
+    "DESC_INTRUSO": "Găsește personajul care nu se potrivește cu grupul",
+    "TITULO_TRIVIA": "TRIVIA",
+    "BADGE_TRIVIA": "# Quiz",
+    "DESC_TRIVIA": "Cine este cine?"
+  },
+  "INTRUSO": {
+    "CAT_ALIVE": "Viu",
+    "CAT_DEAD": "Mort",
+    "CAT_MALE": "Masculin",
+    "CAT_FEMALE": "Feminin",
+    "CAT_ALIEN": "Extraterestru",
+    "CAT_HUMAN": "Uman",
+    "VICTORIA_MENSAJE": "Toți intruși descoperiți! 🎯",
+    "DERROTA_MENSAJE": "Intrusul a câștigat... de data asta."
+  },
+  "PAREJAS": {
+    "VICTORIA_MOVS": "Ai făcut {{count}} mutări"
+  },
+  "TRIVIA": {
+    "VICTORIA_MENSAJE": "Timp expirat! Uită-te la scorul tău 👇",
+    "DERROTA_MENSAJE": "Fără vieți! Uită-te cât ai ajuns 👇"
+  },
+  "DIFICULTAD_NIVEL": {
+    "SUPERFACIL": "FOARTE UȘOR",
+    "FACIL": "UȘOR",
+    "MEDIO": "MEDIU",
+    "DIFICIL": "GREU",
+    "SUPERDIFICIL": "FOARTE GREU"
+  },
+  "PERSONAJE_NOMBRE": {
+    "SUPERFACIL": "🥒 RICK MURĂTURĂ",
+    "FACIL": "🌍 MORTY",
+    "MEDIO": "🍷 BETH",
+    "DIFICIL": "🥼 RICK",
+    "SUPERDIFICIL": "💀 SUPER MORTY"
+  },
+  "LOGIN": {
+    "ERROR_EMAIL_EN_USO": "Acest email este deja înregistrat.",
+    "ERROR_EMAIL_INVALIDO": "Emailul nu este valid.",
+    "ERROR_PASSWORD_DEBIL": "Parola trebuie să aibă cel puțin 6 caractere.",
+    "ERROR_CREDENCIAL_INVALIDA": "Email sau parolă incorecte.",
+    "ERROR_USUARIO_NO_ENCONTRADO": "Nu există niciun cont cu acest email.",
+    "ERROR_DESCONOCIDO": "Eroare necunoscută. Încearcă din nou.",
+    "TITULO_REGISTRO": "ÎNREGISTRARE",
+    "TITULO_ACCESO": "AUTENTIFICARE",
+    "SUBTITULO_REGISTRO": "Crează cont",
+    "SUBTITULO_ACCESO": "Conectează-te",
+    "LABEL_NOMBRE": "Numele jucătorului",
+    "LABEL_EMAIL": "Email",
+    "LABEL_PASSWORD": "Parolă",
+    "PLACEHOLDER_NOMBRE": "Aliasul tău în multivers",
+    "BTN_REGISTRO": "ÎNREGISTRARE",
+    "BTN_ACCESO": "INTRĂ",
+    "TOGGLE_REGISTRO": "Înregistrează-te",
+    "TOGGLE_ACCESO": "Conectează-te"
+  },
+  "JUEGO": {
+    "MOVIMIENTOS": "Mutări",
+    "FALLOS": "Greșeli",
+    "LIMITE": "Limită",
+    "CARGANDO": "SE ÎNCARCĂ DIMENSIUNEA...",
+    "VICTORIA_TITULO": "AI CÂȘTIGAT",
+    "VICTORIA_MENSAJE": "Ai scăpat la timp! 🛸",
+    "DERROTA_TITULO": "AI PIERDUT",
+    "DERROTA_MENSAJE": "Eroare dimensională... 💀"
+  }
+}

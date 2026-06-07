@@ -1,0 +1,33 @@
+﻿# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.angular/
+tmp/
+out-tsc/
+
+# Environments y secretos
+.env
+.env.local
+.env.development
+.env.production
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+coverage/

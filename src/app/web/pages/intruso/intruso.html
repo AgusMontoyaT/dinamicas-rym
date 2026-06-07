@@ -1,0 +1,157 @@
+<div class="contenedor">
+
+  <app-header [nombreJuego]="nombreJuego" [nombreDificultad]="nombreDificultad"
+    [tiempoFormateado]="(tiempoFormateado$ | async) || ''" [tiempoRestante]="(tiempoRestante$ | async) || 0"
+    [tiempoLimite]="(tiempoLimite$ | async) || 0" [movimientos]="(puntuacion$ | async) || 0"
+    [fallos]="(fallos$ | async) || 0" [limiteFallos]="limiteFallos" tipoVida="corazon"
+    (onReiniciar)="reiniciarPartida()" (onSalir)="cambiarDificultad()"></app-header>
+
+  <div class="zona-juego">
+
+    @if (!(cartasCargadas$ | async) && !((estadoJuego$ | async) === 'ganado' || (estadoJuego$ | async) === 'perdido')) {
+    <div class="loading-overlay">
+      <div class="spinner-border text-info"></div>
+      <p class="mt-2 fw-bold text-light">{{ 'INTRUSO.CARGANDO' | translate }}</p>
+    </div>
+    }
+
+    @if (errorCarga$ | async; as error) {
+    <div class="alert alert-danger m-2 text-center">
+      {{ error }}
+      <button class="btn btn-danger btn-sm ms-3" (click)="reiniciarPartida()">{{ 'INTRUSO.BTN_REINTENTAR' | translate
+        }}</button>
+    </div>
+    }
+
+    <!-- Tarjeta de misión -->
+    @if ((estadoJugando$ | async)?.grupoActual; as grupo) {
+    <div class="mission-card">
+      <div class="mission-header">
+        <span class="mission-icono">🕵️</span>
+        <span class="mission-titulo">{{ 'INTRUSO.MISION_TITULO' | translate }}</span>
+        <span class="ronda-badge">
+          {{ rondasJugador$ | async }} / {{ rondasTotales }}
+        </span>
+      </div>
+
+      <p class="mission-subtitulo">{{ 'INTRUSO.MISION_SUBTITULO' | translate }}</p>
+
+      <!-- Pills de categoría -->
+      <div class="categorias-pills">
+        @for (cat of categorias; track cat) {
+        <span class="cat-pill" [class.cat-activa]="grupo.caractComun === cat">
+          {{ getCategoriaEmoji(cat) }} {{ ('INTRUSO.CAT_' + cat.toUpperCase()) | translate }}
+        </span>
+        }
+      </div>
+
+      <div class="mission-footer">
+        @if (pistaDisponible$ | async) {
+        <button class="btn-pista" (click)="usarPista()">
+          {{ 'INTRUSO.BTN_PISTA' | translate }}
+        </button>
+        } @else {
+        <div class="pista-reveal-card">
+          <span>{{ 'INTRUSO.PISTA_COMUN' | translate }} <strong class="text-cyan">{{
+              getCondicionComunKey(grupo.caractComun) | translate }}</strong></span>
+          <span class="pista-separador">•</span>
+          <span>{{ 'INTRUSO.PISTA_INTRUSO' | translate }} <strong class="text-danger-suave">{{
+              getCondicionIntrusoKey(grupo.caractComun) | translate }}</strong></span>
+        </div>
+        }
+
+        <span class="score-pill">
+          ✅ {{ puntuacion$ | async }} {{ 'INTRUSO.ENCONTRADOS' | translate }}
+        </span>
+      </div>
+    </div>
+    }
+
+    <!-- Grid de cartas -->
+    @if (cartas$ | async; as cartas) {
+    <div class="cartas-contenedor">
+      <div class="row g-3 justify-content-center">
+        @for (carta of cartas; track carta.id; let i = $index) {
+        <div class="{{ gridAjuste }}">
+          <app-carta [carta]="carta" [visible]="true" [siempreClickable]="true"
+            [bloqueado]="(estadoJuego$ | async) !== 'jugando' || !!(tableroBloqueado$ | async)"
+            [emparejada]="carta.isEmparejada" (clickCarta)="onCartaClick(i)"
+            (clickBloqueado)="onCartaBloqueadaClick()"></app-carta>
+        </div>
+        }
+      </div>
+    </div>
+    }
+
+  </div>
+
+  <!-- Toast tablero bloqueado -->
+  @if (mostrarToastBloqueado) {
+  <div class="toast-bloqueado">
+    {{ 'INTRUSO.TOAST_ESPERA' | translate }}
+  </div>
+  }
+
+  <!-- Toast final -->
+  <div class="toast-container position-fixed top-50 start-50 translate-middle p-3 mb-4">
+
+    @if ((estadoJuego$ | async) === 'ganado') {
+    <div class="toast show toast-portal ganado" role="alert">
+      <div class="toast-header bg-transparent text-white border-bottom border-success border-opacity-25 capa-superior">
+        <strong class="me-auto title-toast">{{ 'INTRUSO.VICTORIA_TITULO' | translate }}</strong>
+        <button type="button" class="btn-close btn-close-white" (click)="reiniciarPartida()"></button>
+      </div>
+      <div class="toast-body text-center d-flex flex-column">
+        <app-confeti class="confeti-interno"></app-confeti>
+        <h4 class="mensaje-final capa-fondo mt-2">{{ 'INTRUSO.VICTORIA_MENSAJE' | translate }}</h4>
+        <p class="text-white capa-fondo mt-1">
+          {{ 'INTRUSO.VICTORIA_ANTES' | translate }} <strong class="text-cyan">{{ rondasTotales }}</strong>
+          {{ 'INTRUSO.VICTORIA_RONDAS_CON' | translate }} <strong class="text-warning">{{ fallos$ | async }}</strong>
+          {{ 'INTRUSO.VICTORIA_FALLOS_TEXTO' | translate }}
+        </p>
+        <div class="flex-grow-1"></div>
+        <div class="capa-superior d-flex gap-3 justify-content-center pb-3">
+          <button class="btn btn-portal-cyan" (click)="reiniciarPartida()">
+            <fa-icon [icon]="faArrowsRotate"></fa-icon>
+          </button>
+          @if (siguienteDificultad) {
+          <button class="btn btn-siguiente" (click)="irSiguienteNivel()">
+            <fa-icon [icon]="faArrowRight"></fa-icon>
+          </button>
+          }
+          <button class="btn btn-light" (click)="cambiarDificultad()">
+            <fa-icon [icon]="faXMark"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+
+    @if ((estadoJuego$ | async) === 'perdido') {
+    <div class="toast show toast-portal perdido" role="alert">
+      <div class="toast-header bg-transparent text-white border-bottom border-danger border-opacity-25 capa-superior">
+        <strong class="me-auto title-toast">{{ 'INTRUSO.DERROTA_TITULO' | translate }}</strong>
+        <button type="button" class="btn-close btn-close-white" (click)="reiniciarPartida()"></button>
+      </div>
+      <div class="toast-body text-center">
+        <h4 class="mensaje-final capa-fondo">{{ 'INTRUSO.DERROTA_MENSAJE' | translate }}</h4>
+        <p class="text-white capa-fondo mt-2">
+          {{ 'INTRUSO.DERROTA_ANTES' | translate }} <strong class="text-cyan">{{ rondasJugador$ | async }}</strong>
+          {{ 'INTRUSO.DERROTA_CON' | translate }} <strong class="text-danger-suave">{{ puntuacion$ | async }}</strong>
+          {{ 'INTRUSO.DERROTA_INTRUSOS' | translate }}
+        </p>
+        <div class="d-flex gap-2 justify-content-center mt-3 capa-superior">
+          <button class="btn btn-sm btn-portal-red" (click)="reiniciarPartida()">
+            <fa-icon [icon]="faArrowsRotate"></fa-icon>
+          </button>
+          <button class="btn btn-sm btn-light" (click)="cambiarDificultad()">
+            <fa-icon [icon]="faXMark"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+
+  </div>
+
+</div>

@@ -1,0 +1,74 @@
+<header class="header-cyber sticky-top">
+  <div class="header-inner" [class.sin-juego]="!tiempoFormateado">
+    <!-- nombre juego + vidas -->
+    <div class="header-left">
+      @if (tiempoFormateado) {
+      <div class="stats-pill" [class.shaking]="shakingVidas">
+        @if (nombreJuego) {
+        <span class="nombre-juego-pill">{{ nombreJuego }}</span>
+        <span class="separador-pill">|</span>
+        }
+        <span class="stat-item vidas-container">
+          @for (vida of vidas; track $index) {
+          <span class="vida" [class.perdida]="!vida">
+            {{ getEmojiVida(vida) }}
+          </span>
+          }
+        </span>
+        @if (movimientos) {
+        <span class="separador-pill">|</span>
+        <span class="stat-item movimientos-pill">{{ movimientos }}</span>
+        }
+      </div>
+      } @else {
+      <span class="title">
+        {{ 'HEADER.SELECCIONA' | translate }}
+      </span>
+      }
+    </div>
+
+    <!-- cronómetro -->
+    @if (tiempoFormateado) {
+    <div class="cronometro-wrapper" [class.poco-tiempo]="pocotiempo">
+      <svg class="cronometro-svg" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" [attr.r]="RADIO" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="4" />
+        <circle cx="40" cy="40" [attr.r]="RADIO" fill="none" [attr.stroke]="colorAnillo" stroke-width="4"
+          stroke-linecap="round" [attr.stroke-dasharray]="CIRCUNFERENCIA" [attr.stroke-dashoffset]="strokeDashoffset"
+          transform="rotate(-90 40 40)" class="anillo-progreso" />
+      </svg>
+      <span class="cronometro-texto" [style.color]="colorAnillo">
+        {{ tiempoFormateado }}
+      </span>
+    </div>
+    }
+
+    <!-- botones + idioma -->
+    <div class="header-right">
+      @if (tiempoFormateado) {
+      <button class="btn-juego btn-salir" (click)="onSalir.emit()" title="Salir">
+        <fa-icon [icon]="faLeftLong"></fa-icon>
+      </button>
+      <button class="btn-juego btn-reiniciar" (click)="onReiniciar.emit()" title="Reiniciar">
+        <fa-icon [icon]="faRotateLeft"></fa-icon>
+      </button>
+      }
+
+      <div class="lang-wrapper">
+        <div class="lang-selector-cyber" [class.expanded]="isLangMenuOpen" (click)="toggleMenu()">
+          <div class="lang-current">
+            <fa-icon [icon]="faLanguage" class="text-info me-1 small"></fa-icon>
+            <span class="lang-code">{{ translate.currentLang || 'es' }}</span>
+          </div>
+          <div class="lang-options-container">
+            @for (lang of ['es', 'en', 'ca', 'gl', 'eu', 'ro']; track lang) {
+            <button class="lang-btn" [class.active]="translate.currentLang === lang"
+              (click)="selectLanguage(lang); $event.stopPropagation()">
+              {{ lang }}
+            </button>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

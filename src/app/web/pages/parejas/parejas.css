@@ -1,0 +1,330 @@
+.contenedor {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+    url('../../../../../public/assets/background/bg-portal4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100dvh;
+  overflow: hidden;
+  width: 100%;
+}
+
+app-tablero {
+  min-height: 0;
+  overflow: hidden;
+}
+
+
+/* TOAST */
+.toast-portal {
+  background: rgba(20, 23, 26, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 176, 200, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
+
+  position: relative;
+  isolation: isolate;
+  min-width: 18rem;
+  min-height: 15rem !important;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.confeti-interno {
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  z-index: 1 !important;
+  pointer-events: none;
+}
+
+.capa-fondo {
+  position: relative;
+  z-index: 1;
+}
+
+.capa-superior {
+  position: relative;
+  z-index: 10 !important;
+  margin-top: auto;
+}
+
+.toast-body {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1 !important;
+  padding-top: 2rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.title-toast {
+  font-family: 'DigitalTech';
+  font-size: 1.5rem;
+  font-weight: lighter;
+  letter-spacing: 0.2rem;
+  margin-left: 1rem;
+}
+
+.mensaje-final {
+  position: relative;
+  z-index: 2;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.title-toast,
+.toast-header,
+.btn-portal-green,
+.btn-outline-light,
+.btn-close {
+  position: relative;
+  z-index: 3;
+}
+
+.toast-portal .mensaje-final {
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.toast-portal.ganado {
+  border-left: 5px solid #97ce4c;
+  box-shadow:
+    0 0 25px rgba(151, 206, 76, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.toast-portal.ganado .mensaje-final {
+  color: #97ce4c;
+}
+
+.toast-portal.perdido {
+  border-left: 5px solid #ff4444;
+  box-shadow:
+    0 0 25px rgba(255, 68, 68, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.toast-portal.perdido .mensaje-final {
+  color: #ff4444;
+}
+
+
+/* BOTONES */
+.btn-portal-green {
+  background: #97ce4c;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 10px rgba(151, 206, 76, 0.5);
+}
+
+.btn-portal-red {
+  background: #ff4444;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+}
+
+/* VERTICAL */
+@media (max-width: 576px) {
+  .contenedor {
+    padding: calc(env(safe-area-inset-top) + 0.5rem) 0.5rem 0.5rem;
+  }
+}
+
+/* HORIZONTAL */
+@media (orientation: landscape) and (max-height: 500px) {
+  .contenedor {
+    padding: calc(env(safe-area-inset-top) + 0.3rem) 0.3rem 0.3rem;
+  }
+}
+
+
+/* BOTÓN SIGUIENTE NIVEL */
+.btn-siguiente {
+  background: #00b0c8;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 176, 200, 0.5);
+}
+
+.btn-siguiente:hover {
+  background: #00c8e0;
+}
+
+/* BOTÓN FLOTANTE */
+.btn-como-jugar {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background: rgba(10, 15, 25, 0.85);
+  border: 1px solid rgba(0, 176, 200, 0.5);
+  color: #00b0c8;
+  font-size: 1.1rem;
+  font-weight: bold;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 900;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 12px rgba(0, 176, 200, 0.25);
+}
+
+.btn-como-jugar:hover {
+  background: rgba(0, 176, 200, 0.15);
+  box-shadow: 0 0 20px rgba(0, 176, 200, 0.5);
+}
+
+/* MODAL */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-glass {
+  position: relative;
+  background: rgba(10, 15, 25, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 176, 200, 0.4);
+  border-radius: 20px;
+  padding: 2rem 1.5rem 1.5rem;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 176, 200, 0.15);
+  animation: modalPopUp 0.25s ease;
+}
+
+.modal-cerrar {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.modal-cerrar:hover { background: rgba(255, 255, 255, 0.2); }
+
+.modal-titulo {
+  font-family: 'DigitalTech', monospace;
+  font-size: 2rem;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.4rem;
+}
+
+.modal-subtitulo {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-pasos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.modal-paso {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 1rem 0.5rem;
+  text-align: center;
+}
+
+.paso-icono { font-size: 2rem; line-height: 1; margin-bottom: 0.5rem; }
+
+.paso-numero {
+  background: #97ce4c;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.8rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paso-label { color: #97ce4c; font-weight: bold; font-size: 0.8rem; letter-spacing: 0.05rem; margin: 0; }
+.paso-desc { color: rgba(255, 255, 255, 0.6); font-size: 0.75rem; margin: 0; }
+
+.btn-entendido {
+  width: 100%;
+  padding: 0.8rem;
+  background: #97ce4c;
+  color: #000;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.1rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(151, 206, 76, 0.5);
+  transition: all 0.2s ease;
+}
+
+.btn-entendido:hover {
+  background: #aade5c;
+  box-shadow: 0 0 30px rgba(151, 206, 76, 0.7);
+}
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalPopUp {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ANIMACIONES */
+@keyframes popUp {
+  from {
+    transform: translateY(-50%) scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "HEADER": {
+    "SELECCIONA": "Tria la dificultat",
+    "JUGANDO": "Missió en curs"
+  },
+  "INICIO": {
+    "TITULO": "CLONS",
+    "SUBTITULO": "Troba els clons abans que el portal es tanqui! Corre!!",
+    "LEYENDA_TITULO": "NIVELLS DE RICK I MORTY",
+    "MODO_MEMORIA": "Memòria",
+    "RANKING": "Rànquing",
+    "COMO_JUGAR": "Com jugar",
+    "CERRAR_SESION": "Sortir",
+    "TITULO_INTRUSO": "INTRÚS",
+    "BADGE_INTRUSO": "# Investigació",
+    "DESC_INTRUSO": "Troba el personatge que no encaixa amb el grup",
+    "TITULO_TRIVIA": "TRIVIA",
+    "BADGE_TRIVIA": "# Quiz",
+    "DESC_TRIVIA": "Qui és qui?"
+  },
+  "INTRUSO": {
+    "CAT_ALIVE": "Vius",
+    "CAT_DEAD": "Morts",
+    "CAT_MALE": "Masculí",
+    "CAT_FEMALE": "Femení",
+    "CAT_ALIEN": "Alienígena",
+    "CAT_HUMAN": "Humà",
+    "VICTORIA_MENSAJE": "Tots els intrusos descoberts! 🎯",
+    "DERROTA_MENSAJE": "L'intrús ha guanyat... aquesta vegada."
+  },
+  "PAREJAS": {
+    "VICTORIA_MOVS": "Has fet {{count}} moviments"
+  },
+  "TRIVIA": {
+    "VICTORIA_MENSAJE": "Temps esgotat! Mira la teva puntuació 👇",
+    "DERROTA_MENSAJE": "Sense vides! Mira fins on has arribat 👇"
+  },
+  "PERSONAJE_NOMBRE": {
+    "SUPERFACIL": "🥒 RICK COGOMBRET",
+    "FACIL": "🌍 MORTY",
+    "MEDIO": "🍷 BETH",
+    "DIFICIL": "🥼 RICK",
+    "SUPERDIFICIL": "💀 SUPER MORTY"
+  },
+  "DIFICULTAD_NIVEL": {
+    "SUPERFACIL": "MOLT FÀCIL",
+    "FACIL": "FÀCIL",
+    "MEDIO": "MITJÀ",
+    "DIFICIL": "DIFÍCIL",
+    "SUPERDIFICIL": "MOLT DIFÍCIL"
+  },
+  "LOGIN": {
+    "ERROR_EMAIL_EN_USO": "Aquest email ja està registrat.",
+    "ERROR_EMAIL_INVALIDO": "L'email no és vàlid.",
+    "ERROR_PASSWORD_DEBIL": "La contrasenya ha de tenir almenys 6 caràcters.",
+    "ERROR_CREDENCIAL_INVALIDA": "Email o contrasenya incorrectes.",
+    "ERROR_USUARIO_NO_ENCONTRADO": "No existeix cap compte amb aquest email.",
+    "ERROR_DESCONOCIDO": "Error desconegut. Torna-ho a intentar.",
+    "TITULO_REGISTRO": "REGISTRE",
+    "TITULO_ACCESO": "ACCÉS",
+    "SUBTITULO_REGISTRO": "Crear compte",
+    "SUBTITULO_ACCESO": "Iniciar sessió",
+    "LABEL_NOMBRE": "Nom del jugador",
+    "LABEL_EMAIL": "Email",
+    "LABEL_PASSWORD": "Contrasenya",
+    "PLACEHOLDER_NOMBRE": "El teu àlies al multiverso",
+    "BTN_REGISTRO": "REGISTRAR-SE",
+    "BTN_ACCESO": "ENTRAR",
+    "TOGGLE_REGISTRO": "Registra't",
+    "TOGGLE_ACCESO": "Inicia sessió"
+  },
+  "JUEGO": {
+    "MOVIMIENTOS": "Moviments",
+    "FALLOS": "Errors",
+    "LIMITE": "Límit",
+    "CARGANDO": "CARREGANT DIMENSIÓ...",
+    "VICTORIA_TITULO": "HAS GUANYAT",
+    "VICTORIA_MENSAJE": "Has fugit a temps! 🛸",
+    "DERROTA_TITULO": "HAS PERDUT",
+    "DERROTA_MENSAJE": "Error dimensional... 💀"
+  }
+}

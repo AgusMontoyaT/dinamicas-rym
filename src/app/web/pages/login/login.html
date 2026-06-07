@@ -1,0 +1,82 @@
+<div class="login-contenedor">
+  <!-- Portal animado de fondo -->
+  <div class="portal-bg">
+    <div class="portal-circle portal-1"></div>
+    <div class="portal-circle portal-2"></div>
+    <div class="portal-circle portal-3"></div>
+  </div>
+
+  <!-- Contenedor principal -->
+  <div class="login-wrapper">
+    <!-- Header decorativo -->
+    <div class="login-header">
+      <div class="header-glow"></div>
+      <h1 class="app-title">
+        <span class="rick">RICK</span>
+        <span class="amp"> y </span>
+        <span class="morty">MORTY</span>
+      </h1>
+    </div>
+
+    <!-- Card de login -->
+    <div class="login-card">
+      <div class="card-glow"></div>
+
+      <h2 class="login-titulo">
+        {{ (modoRegistro ? 'LOGIN.TITULO_REGISTRO' : 'LOGIN.TITULO_ACCESO') | translate }}
+      </h2>
+      <p class="login-subtitulo">
+        {{ (modoRegistro ? 'LOGIN.SUBTITULO_REGISTRO' : 'LOGIN.SUBTITULO_ACCESO') | translate }}
+      </p>
+
+      <!-- Error -->
+      @if (error) {
+      <div class="alert-error">
+        <span class="error-icon">(!!!)</span>
+        <span>{{ error }}</span>
+      </div>
+      }
+
+      <!-- Formulario -->
+      <form class="login-form" (ngSubmit)="submit()">
+        @if (modoRegistro) {
+        <div class="input-group">
+          <label class="input-label">{{ 'LOGIN.LABEL_NOMBRE' | translate }}</label>
+          <input type="text" class="login-input" [(ngModel)]="nombre" name="nombre"
+            [placeholder]="'LOGIN.PLACEHOLDER_NOMBRE' | translate" [disabled]="cargando" />
+        </div>
+        }
+
+        <div class="input-group">
+          <label class="input-label">{{ 'LOGIN.LABEL_EMAIL' | translate }}</label>
+          <input type="email" class="login-input" [(ngModel)]="email" name="email" placeholder="email@ejemplo.com"
+            [disabled]="cargando" />
+        </div>
+
+        <div class="input-group">
+          <label class="input-label">{{ 'LOGIN.LABEL_PASSWORD' | translate }}</label>
+          <input type="password" class="login-input" [(ngModel)]="password" name="password" placeholder="••••••••"
+            [disabled]="cargando" />
+        </div>
+
+        <!-- Botón principal -->
+        <button type="submit" class="btn-submit" [disabled]="cargando" [class.loading]="cargando">
+          @if (cargando) {
+          <span class="spinner"></span>
+          } @else {
+          {{ (modoRegistro ? 'LOGIN.BTN_REGISTRO' : 'LOGIN.BTN_ACCESO') | translate }}
+          }
+        </button>
+      </form>
+
+      <!-- Separador -->
+      <div class="separator"></div>
+      <br>
+
+      <!-- Toggle modo -->
+      <button class="btn-toggle text-center" (click)="toggleModo()" [disabled]="cargando">
+        {{ (modoRegistro ? 'LOGIN.TOGGLE_ACCESO' : 'LOGIN.TOGGLE_REGISTRO') | translate }}
+      </button>
+    </div>
+  </div>
+</div>

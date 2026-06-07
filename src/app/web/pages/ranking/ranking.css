@@ -1,0 +1,136 @@
+.ranking-bg {
+  min-height: 100dvh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.65)),
+    url('/assets/background/bg-portal4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.ranking-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-volver {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.btn-volver:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.ranking-titulo {
+  font-family: 'DigitalTech', monospace;
+  font-size: 2rem;
+  letter-spacing: 0.3rem;
+  color: #ffc107;
+  margin: 0;
+  text-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+}
+
+/* Selectores */
+.selector-juego .btn-juego {
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  border: 1px solid rgba(151, 206, 76, 0.3);
+  background: rgba(0, 0, 0, 0.35);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: bold;
+  font-size: 0.88rem;
+  letter-spacing: 0.05rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.selector-juego .btn-juego.activo {
+  background: #97ce4c;
+  color: #000;
+  border-color: #97ce4c;
+  box-shadow: 0 0 15px rgba(151, 206, 76, 0.4);
+}
+
+.selector-juego .btn-juego:not(.activo):hover {
+  background: rgba(151, 206, 76, 0.1);
+  border-color: rgba(151, 206, 76, 0.5);
+  color: #fff;
+}
+
+.selector-dificultad .btn-dif {
+  padding: 0.3rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.selector-dificultad .btn-dif.activo {
+  background: rgba(255, 193, 7, 0.2);
+  border-color: rgba(255, 193, 7, 0.6);
+  color: #ffc107;
+}
+
+.selector-dificultad .btn-dif:not(.activo):hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Tabla */
+.tabla-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 193, 7, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.tabla-card table {
+  margin: 0;
+}
+
+.tabla-card thead th {
+  background: rgba(255, 193, 7, 0.08);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+  border-color: rgba(255, 255, 255, 0.07);
+  padding: 0.75rem 1rem;
+}
+
+.tabla-card tbody tr {
+  border-color: rgba(255, 255, 255, 0.05);
+  transition: background 0.15s ease;
+}
+
+.tabla-card tbody tr:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.tabla-card tbody td {
+  border-color: rgba(255, 255, 255, 0.05);
+  padding: 0.7rem 1rem;
+  vertical-align: middle;
+}
+
+.empty-msg {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  padding: 3rem 1rem;
+  font-size: 0.95rem;
+}

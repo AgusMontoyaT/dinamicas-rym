@@ -1,0 +1,19 @@
+<div class="tablero-wrapper">
+  <div class="tablero-grid" [ngClass]="'grid-' + dificultad">
+    @for (carta of cartas; track carta.id; let i = $index) {
+      <app-carta
+        [carta]="carta"
+        [visible]="previsualizacion || carta.isVisible"
+        [bloqueado]="juegoBloqueado || carta.isEmparejada"
+        [emparejada]="carta.isEmparejada"
+        [fallo]="carta.isFallo"
+        [acierto]="carta.isAcierto"
+        (clickCarta)="onCartaClick.emit(i)">
+      </app-carta>
+    } @empty {
+      <div class="text-center w-100">
+        <p class="text-light opacity-50">No hay cartas en esta dimensión...</p>
+      </div>
+    }
+  </div>
+</div>

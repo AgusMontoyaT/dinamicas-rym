@@ -1,0 +1,177 @@
+<div class="contenedor-principal">
+
+  <!-- Navbar de inicio -->
+  <nav class="navbar-inicio" [class.oculto]="mostrarModal">
+    <span class="navbar-titulo">RICK y MORTY</span>
+
+    @if (currentUser$ | async; as usuario) {
+    <div class="navbar-derecha">
+      <span class="usuario-nombre">{{ usuario.displayName ?? usuario.email }}</span>
+
+      <div class="lang-wrapper-nav">
+        <div class="lang-selector-nav" [class.expandido]="idiomaMenuAbierto" (click)="toggleIdiomaMenu()">
+          <div class="lang-actual">
+            <fa-icon [icon]="faLanguage" class="small me-1"></fa-icon>
+            <span class="lang-codigo">{{ translate.currentLang || 'es' }}</span>
+          </div>
+          <div class="lang-opciones-nav">
+            @for (lang of ['es', 'en', 'ca', 'gl', 'eu', 'ro']; track lang) {
+            <button class="lang-btn-nav" [class.activo]="translate.currentLang === lang"
+              (click)="cambiarIdioma(lang); $event.stopPropagation()">{{ lang }}</button>
+            }
+          </div>
+        </div>
+      </div>
+
+      <button class="btn-logout" (click)="logout()">
+        <fa-icon [icon]="faRightFromBracket"></fa-icon>
+        <span class="logout-texto">{{ 'INICIO.CERRAR_SESION' | translate }}</span>
+      </button>
+    </div>
+    }
+  </nav>
+
+  <!-- Grid juegos -->
+  <div class="juegos-grid">
+
+    <!-- CLONES -->
+    <div class="juego-card-horizontal card juego-card-parejas">
+      <div class="row g-0 align-items-center">
+        <div class="col-sm-5 img-contenedor d-none d-sm-flex">
+          <img src="assets/img/clones-rym.jpg" class="img-circular" alt="Parejas" />
+        </div>
+
+        <div class="col-12 col-sm-7 px-4 py-4">
+          <div class="card-body p-0">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h2 class="title m-0 text-white">{{ 'INICIO.TITULO' | translate }}</h2>
+              <span class="badge-juego badge-parejas">{{ 'INICIO.MODO_MEMORIA' | translate }}</span>
+            </div>
+
+            <p class="text-light opacity-75 mb-4 small">
+              {{ 'INICIO.SUBTITULO' | translate }}
+            </p>
+
+            <div class="btn-grid">
+              @for (dif of dificultadesLeyenda; track dif.clase) {
+              <button class="btn-custom btn-parejas" [class.btn-superdificil]="dif.clase === 'superdificil'"
+                (click)="navegarConPortal('parejas', dif.clase)">
+                {{ 'DIFICULTAD_NIVEL.' + dif.clase.toUpperCase() | translate }}
+              </button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INTRUSO -->
+    <div class="juego-card-horizontal card-intruso card">
+      <div class="row g-0 align-items-center">
+        <div class="col-xl-4 img-contenedor d-none d-xl-flex">
+          <img src="assets/img/morty-intruso-f.jpg" class="img-circular img-circular-intruso" alt="Intruso" />
+        </div>
+
+        <div class="col-12 col-xl-8 px-4 py-4">
+          <div class="card-body p-0">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h2 class="title m-0 text-white">{{ 'INICIO.TITULO_INTRUSO' | translate }}</h2>
+              <span class="badge-juego badge-intruso">{{ 'INICIO.BADGE_INTRUSO' | translate }}</span>
+            </div>
+
+            <p class="text-light opacity-75 mb-4 small">
+              {{ 'INICIO.DESC_INTRUSO' | translate }}
+            </p>
+
+            <div class="btn-grid btn-grid-compacto">
+              @for (dif of dificultadesLeyenda; track dif.clase) {
+              <button class="btn-custom btn-intruso" [class.btn-superdificil-intruso]="dif.clase === 'superdificil'"
+                (click)="navegarConPortal('intruso', dif.clase)">
+                {{ 'DIFICULTAD_NIVEL.' + dif.clase.toUpperCase() | translate }}
+              </button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRIVIA -->
+    <div class="juego-card-horizontal card-trivia card">
+      <div class="row g-0 align-items-center">
+        <div class="col-xl-4 img-contenedor d-none d-xl-flex">
+          <img src="assets/img/guarderia-jerrys.jpg" class="img-circular img-circular-trivia" alt="Trivia" />
+        </div>
+
+        <div class="col-12 col-xl-8 px-4 py-4">
+          <div class="card-body p-0">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h2 class="title m-0 text-white">{{ 'INICIO.TITULO_TRIVIA' | translate }}</h2>
+              <span class="badge-juego badge-trivia">{{ 'INICIO.BADGE_TRIVIA' | translate }}</span>
+            </div>
+
+            <p class="text-light opacity-75 mb-4 small">
+              {{ 'INICIO.DESC_TRIVIA' | translate }}
+            </p>
+
+            <div class="btn-grid btn-grid-compacto">
+              @for (dif of dificultadesLeyenda; track dif.clase) {
+              <button class="btn-custom btn-trivia" [class.btn-superdificil-trivia]="dif.clase === 'superdificil'"
+                (click)="navegarConPortal('trivia', dif.clase)">
+                {{ 'DIFICULTAD_NIVEL.' + dif.clase.toUpperCase() | translate }}
+              </button>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Portal animado -->
+  @if (mostrarPortal) {
+  <app-portal (animacionCompletada)="onPortalCompletado()"></app-portal>
+  }
+
+  <!-- Botones ranking / cómo jugar -->
+  <button class="btn-ranking" aria-label="Ranking" (click)="router.navigate(['/ranking'])">🏆 {{ 'INICIO.RANKING' |
+    translate }}</button>
+  <button class="btn-como-jugar" aria-label="Cómo jugar" (click)="abrirModal()">{{ 'INICIO.COMO_JUGAR' | translate
+    }}</button>
+
+  <!-- Modal -->
+  @if (mostrarModal) {
+  <div class="modal-overlay" (click)="cerrarModal()">
+    <div class="modal-glass" (click)="$event.stopPropagation()">
+      <button class="modal-cerrar" (click)="cerrarModal()">✕</button>
+
+      <h2 class="modal-titulo">{{ 'MODAL_INICIO.TITULO' | translate }}</h2>
+      <p class="modal-subtitulo">{{ 'MODAL_INICIO.SUBTITULO' | translate }}</p>
+
+      <div class="modal-pasos">
+        <div class="modal-paso">
+          <div class="paso-icono">🎴</div>
+          <p class="paso-label">{{ 'MODAL_INICIO.CLONES_LABEL' | translate }}</p>
+          <p class="paso-desc">{{ 'MODAL_INICIO.CLONES_DESC' | translate }}</p>
+        </div>
+
+        <div class="modal-paso">
+          <div class="paso-icono">🕵️</div>
+          <p class="paso-label">{{ 'MODAL_INICIO.INTRUSO_LABEL' | translate }}</p>
+          <p class="paso-desc">{{ 'MODAL_INICIO.INTRUSO_DESC' | translate }}</p>
+        </div>
+
+        <div class="modal-paso">
+          <div class="paso-icono">🧠</div>
+          <p class="paso-label">{{ 'MODAL_INICIO.TRIVIA_LABEL' | translate }}</p>
+          <p class="paso-desc">{{ 'MODAL_INICIO.TRIVIA_DESC' | translate }}</p>
+        </div>
+      </div>
+
+      <button class="btn-entendido" (click)="cerrarModal()">{{ 'MODAL_INICIO.BTN_ENTENDIDO' | translate }}</button>
+    </div>
+  </div>
+  }
+
+</div>

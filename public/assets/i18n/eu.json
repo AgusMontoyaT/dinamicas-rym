@@ -1,0 +1,82 @@
+{
+  "HEADER": {
+    "SELECCIONA": "Aukeratu zailtasuna",
+    "JUGANDO": "Misioa martxan"
+  },
+  "INICIO": {
+    "TITULO": "KLONAK",
+    "SUBTITULO": "Aurkitu klonak ataria itxi baino lehen! Korrika!!",
+    "LEYENDA_TITULO": "RICK-SGO MAILAK",
+    "MODO_MEMORIA": "Memoria",
+    "RANKING": "Sailkapena",
+    "COMO_JUGAR": "Nola jokatu",
+    "CERRAR_SESION": "Irten",
+    "TITULO_INTRUSO": "ARROTZA",
+    "BADGE_INTRUSO": "# Ikerketa",
+    "DESC_INTRUSO": "Aurkitu taldean bat ez datorren pertsonaia",
+    "TITULO_TRIVIA": "TRIVIA",
+    "BADGE_TRIVIA": "# Quiz",
+    "DESC_TRIVIA": "Nor da nor?"
+  },
+  "INTRUSO": {
+    "CAT_ALIVE": "Bizirik",
+    "CAT_DEAD": "Hildako",
+    "CAT_MALE": "Gizonezkoa",
+    "CAT_FEMALE": "Emakumezkoa",
+    "CAT_ALIEN": "Atzerritar",
+    "CAT_HUMAN": "Gizakia",
+    "VICTORIA_MENSAJE": "Arrotz guztiak aurkitu dira! 🎯",
+    "DERROTA_MENSAJE": "Arrotzak irabazi du... oraingoan."
+  },
+  "PAREJAS": {
+    "VICTORIA_MOVS": "{{count}} mugimendu egin dituzu"
+  },
+  "TRIVIA": {
+    "VICTORIA_MENSAJE": "Denbora agortuta! Begiratu zure puntuazioa 👇",
+    "DERROTA_MENSAJE": "Bizitzarik gabe! Ikus zenbat iritsi zaren 👇"
+  },
+  "DIFICULTAD_NIVEL": {
+    "SUPERFACIL": "OSO ERRAZA",
+    "FACIL": "ERRAZA",
+    "MEDIO": "ERTAINA",
+    "DIFICIL": "ZAILA",
+    "SUPERDIFICIL": "OSO ZAILA"
+  },
+  "PERSONAJE_NOMBRE": {
+    "SUPERFACIL": "🥒 RICK LUZOKERRA",
+    "FACIL": "🌍 MORTY",
+    "MEDIO": "🍷 BETH",
+    "DIFICIL": "🥼 RICK",
+    "SUPERDIFICIL": "💀 SUPER MORTY"
+  },
+  "LOGIN": {
+    "ERROR_EMAIL_EN_USO": "Email hau dagoeneko erregistratuta dago.",
+    "ERROR_EMAIL_INVALIDO": "Emaila ez da baliozkoa.",
+    "ERROR_PASSWORD_DEBIL": "Pasahitzak gutxienez 6 karaktere behar ditu.",
+    "ERROR_CREDENCIAL_INVALIDA": "Email edo pasahitz okerra.",
+    "ERROR_USUARIO_NO_ENCONTRADO": "Ez dago konturik email horrekin.",
+    "ERROR_DESCONOCIDO": "Errore ezezaguna. Saiatu berriro.",
+    "TITULO_REGISTRO": "ERREGISTROA",
+    "TITULO_ACCESO": "SARRERA",
+    "SUBTITULO_REGISTRO": "Kontu berria sortu",
+    "SUBTITULO_ACCESO": "Saioa hasi",
+    "LABEL_NOMBRE": "Jokalariaren izena",
+    "LABEL_EMAIL": "Email",
+    "LABEL_PASSWORD": "Pasahitza",
+    "PLACEHOLDER_NOMBRE": "Zure izen-goitizena multibrtsoan",
+    "BTN_REGISTRO": "ERREGISTRATU",
+    "BTN_ACCESO": "SARTU",
+    "TOGGLE_REGISTRO": "Erregistratu",
+    "TOGGLE_ACCESO": "Hasi saioa"
+  },
+  "JUEGO": {
+    "MOVIMIENTOS": "Mugimenduak",
+    "FALLOS": "Akatsak",
+    "LIMITE": "Muga",
+    "CARGANDO": "DIMENTSIOA KARGATZEN...",
+    "VICTORIA_TITULO": "IRABAZI DUZU",
+    "VICTORIA_MENSAJE": "Garaiz ihes egin duzu! 🛸",
+    "DERROTA_TITULO": "GALDU DUZU",
+    "DERROTA_MENSAJE": "Dimentsio-errorea... 💀"
+  }
+}

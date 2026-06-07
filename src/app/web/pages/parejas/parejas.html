@@ -1,0 +1,151 @@
+<div class="contenedor">
+  <!-- Header-->
+  <app-header
+    [nombreJuego]="nombreJuego"
+    [nombreDificultad]="nombreDificultad"
+    [tiempoFormateado]="(tiempoFormateado$ | async) || ''"
+    [tiempoRestante]="(tiempoRestante$ | async) || 0"
+    [tiempoLimite]="(tiempoLimite$ | async) || 0"
+    [movimientos]="(movimientos$ | async) || 0"
+    [fallos]="(fallos$ | async) || 0"
+    [limiteFallos]="limiteFallos"
+    tipoVida="nave"
+    (onReiniciar)="reiniciarPartida()"
+    (onSalir)="salirPartida()"
+  >
+  </app-header>
+
+  <!-- Mensajes estado -->
+  @if (!(cartasCargadas$ | async) && !(errorCarga$ | async)) {
+    <div class="loading-overlay">
+      <div class="spinner-border text-info"></div>
+      <p class="mt-2 fw-bold text-light">{{ 'JUEGO.CARGANDO' | translate }}</p>
+    </div>
+  }
+
+  @if (errorCarga$ | async; as error) {
+    <div class="alert alert-danger m-2">
+      {{ error }}
+      <button class="btn btn-danger btn-sm ms-3" (click)="reiniciarPartida()">{{ 'PAREJAS.BTN_REINTENTAR' | translate }}</button>
+    </div>
+  }
+
+  <!-- Tablero -->
+  @if (cartas$ | async; as cartas) {
+    <app-tablero
+      [cartas]="cartas"
+      [dificultad]="dificultadId"
+      [previsualizacion]="(previsualizacionActiva$ | async) || false"
+      [juegoBloqueado]="(estadoJuego$ | async) !== 'jugando'"
+      (onCartaClick)="onCartaClick($event)"
+    >
+    </app-tablero>
+  }
+
+  <!-- Botón flotante -->
+  <button class="btn-como-jugar" aria-label="Cómo jugar" (click)="abrirComoJugar()">?</button>
+
+  <!-- Modal Como jugar -->
+  @if (mostrarComoJugar) {
+    <div class="modal-overlay" (click)="cerrarComoJugar()">
+      <div class="modal-glass" (click)="$event.stopPropagation()">
+        <button class="modal-cerrar" aria-label="Cerrar" (click)="cerrarComoJugar()">✕</button>
+        <h2 class="modal-titulo">{{ 'PAREJAS.MODAL_TITULO' | translate }}</h2>
+        <p class="modal-subtitulo">{{ 'PAREJAS.MODAL_SUBTITULO' | translate }}</p>
+        <div class="modal-pasos">
+          <div class="modal-paso">
+            <div class="paso-icono">🃏</div>
+            <div class="paso-numero">1</div>
+            <p class="paso-label">{{ 'PAREJAS.MODAL_PASO1_LABEL' | translate }}</p>
+            <p class="paso-desc">{{ 'PAREJAS.MODAL_PASO1_DESC' | translate }}</p>
+          </div>
+          <div class="modal-paso">
+            <div class="paso-icono">👀</div>
+            <div class="paso-numero">2</div>
+            <p class="paso-label">{{ 'PAREJAS.MODAL_PASO2_LABEL' | translate }}</p>
+            <p class="paso-desc">{{ 'PAREJAS.MODAL_PASO2_DESC' | translate }}</p>
+          </div>
+          <div class="modal-paso">
+            <div class="paso-icono">🏆</div>
+            <div class="paso-numero">3</div>
+            <p class="paso-label">{{ 'PAREJAS.MODAL_PASO3_LABEL' | translate }}</p>
+            <p class="paso-desc">{{ 'PAREJAS.MODAL_PASO3_DESC' | translate }}</p>
+          </div>
+        </div>
+        <button class="btn-entendido" (click)="cerrarComoJugar()">{{ 'PAREJAS.BTN_ENTENDIDO' | translate }}</button>
+      </div>
+    </div>
+  }
+
+  <!-- Toast -->
+  <div class="toast-container position-fixed top-50 start-50 translate-middle p-3 mb-4">
+    @if ((estadoJuego$ | async) === 'ganado') {
+      <div class="toast show toast-portal ganado" role="alert">
+        <div
+          class="toast-header bg-transparent text-white border-bottom border-success border-opacity-25 capa-superior"
+        >
+          <strong class="me-auto title-toast">{{ 'JUEGO.VICTORIA_TITULO' | translate }}</strong>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            (click)="reiniciarPartida()"
+          ></button>
+        </div>
+
+        <div class="toast-body text-center d-flex flex-column">
+          <app-confeti class="confeti-interno"></app-confeti>
+
+          <h4 class="mensaje-final capa-fondo mt-2">
+            {{ 'JUEGO.VICTORIA_MENSAJE' | translate }}
+          </h4>
+
+          <div class="flex-grow-1"></div>
+
+          <div class="capa-superior d-flex gap-3 justify-content-center pb-3">
+            <button class="btn btn-portal-green" (click)="reiniciarPartida()">
+              <fa-icon [icon]="faArrowsRotate"></fa-icon>
+            </button>
+            @if (siguienteDificultad) {
+              <button class="btn btn-siguiente" (click)="irSiguienteNivel()">
+                <fa-icon [icon]="faArrowRight"></fa-icon>
+              </button>
+            }
+            <button class="btn btn-light" (click)="salirPartida()">
+              <fa-icon [icon]="faXMark"></fa-icon>
+            </button>
+          </div>
+          <p class="text-white-50 small mt-1">{{ 'PAREJAS.VICTORIA_MOVS' | translate: {count: (movimientos$ | async) || 0} }}</p>
+        </div>
+      </div>
+    }
+
+    @if ((estadoJuego$ | async) === 'perdido') {
+      <div class="toast show toast-portal perdido" role="alert">
+        <div
+          class="toast-header bg-transparent text-white border-bottom border-danger border-opacity-25 capa-superior"
+        >
+          <strong class="me-auto title-toast">{{ 'JUEGO.DERROTA_TITULO' | translate }}</strong>
+          <button
+            type="button"
+            class="btn-close btn-close-white"
+            (click)="reiniciarPartida()"
+          ></button>
+        </div>
+
+        <div class="toast-body text-center">
+          <h4 class="mensaje-final capa-fondo">{{ 'JUEGO.DERROTA_MENSAJE' | translate }}</h4>
+
+          <div class="d-flex gap-2 justify-content-center mt-5 capa-superior">
+            <button class="btn btn-sm btn-portal-red" (click)="reiniciarPartida()">
+              <fa-icon [icon]="faArrowsRotate"></fa-icon>
+            </button>
+            <button class="btn btn-sm btn-light" (click)="salirPartida()">
+              <fa-icon [icon]="faXMark"></fa-icon>
+            </button>
+          </div>
+          <p class="text-white-50 small mt-3 mb-0">Has hecho {{ movimientos$ | async }} movimientos</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>

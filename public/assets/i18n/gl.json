@@ -1,0 +1,82 @@
+{
+  "HEADER": {
+    "SELECCIONA": "Elixe a dificultade",
+    "JUGANDO": "Mision en curso"
+  },
+  "INICIO": {
+    "TITULO": "CLONS",
+    "SUBTITULO": "Atopa os clons antes de que o portal peche! Corre!!",
+    "LEYENDA_TITULO": "NIVEIS DE RICK E MORTY",
+    "MODO_MEMORIA": "Memoria",
+    "RANKING": "Clasificación",
+    "COMO_JUGAR": "Como xogar",
+    "CERRAR_SESION": "Saír",
+    "TITULO_INTRUSO": "INTRUSO",
+    "BADGE_INTRUSO": "# Investigación",
+    "DESC_INTRUSO": "Atopa o personaxe que non encaixa co grupo",
+    "TITULO_TRIVIA": "TRIVIA",
+    "BADGE_TRIVIA": "# Quiz",
+    "DESC_TRIVIA": "Quen é quen?"
+  },
+  "INTRUSO": {
+    "CAT_ALIVE": "Vivos",
+    "CAT_DEAD": "Mortos",
+    "CAT_MALE": "Masculino",
+    "CAT_FEMALE": "Feminino",
+    "CAT_ALIEN": "Alieníxena",
+    "CAT_HUMAN": "Humano",
+    "VICTORIA_MENSAJE": "Todos os intrusos descubertos! 🎯",
+    "DERROTA_MENSAJE": "O intruso gañou... desta vez."
+  },
+  "PAREJAS": {
+    "VICTORIA_MOVS": "Fixeches {{count}} movementos"
+  },
+  "TRIVIA": {
+    "VICTORIA_MENSAJE": "Tempo esgotado! Mira a túa puntuación 👇",
+    "DERROTA_MENSAJE": "Sen vidas! Mira ata onde chegaches 👇"
+  },
+  "DIFICULTAD_NIVEL": {
+    "SUPERFACIL": "MOI FÁCIL",
+    "FACIL": "FÁCIL",
+    "MEDIO": "MEDIO",
+    "DIFICIL": "DIFÍCIL",
+    "SUPERDIFICIL": "MOI DIFÍCIL"
+  },
+  "PERSONAJE_NOMBRE": {
+    "SUPERFACIL": "🥒 PEPINO RICK",
+    "FACIL": "🌍 MORTY",
+    "MEDIO": "🍷 BETH",
+    "DIFICIL": "🥼 RICK",
+    "SUPERDIFICIL": "💀 SUPER MORTY"
+  },
+  "LOGIN": {
+    "ERROR_EMAIL_EN_USO": "Este email xa está rexistrado.",
+    "ERROR_EMAIL_INVALIDO": "O email non é válido.",
+    "ERROR_PASSWORD_DEBIL": "O contrasinal debe ter polo menos 6 caracteres.",
+    "ERROR_CREDENCIAL_INVALIDA": "Email ou contrasinal incorrectos.",
+    "ERROR_USUARIO_NO_ENCONTRADO": "Non existe ningunha conta con ese email.",
+    "ERROR_DESCONOCIDO": "Erro descoñecido. Téntao de novo.",
+    "TITULO_REGISTRO": "REXISTRO",
+    "TITULO_ACCESO": "ACCESO",
+    "SUBTITULO_REGISTRO": "Crear conta",
+    "SUBTITULO_ACCESO": "Iniciar sesión",
+    "LABEL_NOMBRE": "Nome do xogador",
+    "LABEL_EMAIL": "Email",
+    "LABEL_PASSWORD": "Contrasinal",
+    "PLACEHOLDER_NOMBRE": "O teu alias no multiverso",
+    "BTN_REGISTRO": "REXISTRARSE",
+    "BTN_ACCESO": "ENTRAR",
+    "TOGGLE_REGISTRO": "Rexístrate",
+    "TOGGLE_ACCESO": "Inicia sesión"
+  },
+  "JUEGO": {
+    "MOVIMIENTOS": "Movementos",
+    "FALLOS": "Erros",
+    "LIMITE": "Límite",
+    "CARGANDO": "CARGANDO DIMENSIÓN...",
+    "VICTORIA_TITULO": "GAÑASTE",
+    "VICTORIA_MENSAJE": "Fuxiches a tempo! 🛸",
+    "DERROTA_TITULO": "PERDECHES",
+    "DERROTA_MENSAJE": "Erro dimensional... 💀"
+  }
+}

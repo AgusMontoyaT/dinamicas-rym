@@ -1,0 +1,127 @@
+.portal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  z-index: 2000;
+  animation: fondoAparece 0.3s ease forwards;
+}
+
+.portal-overlay.cerrando {
+  animation: fondoDesaparece 0.4s ease forwards;
+}
+
+.portal-contenedor {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  animation: portalAbre 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.portal-overlay.cerrando .portal-contenedor {
+  animation: portalExpande 0.4s ease-in forwards;
+}
+
+.portal-anillo {
+  position: absolute;
+  border-radius: 50%;
+  border: 4px solid transparent;
+}
+
+.anillo-1 {
+  width: 100%;
+  height: 100%;
+  border-color: rgba(151, 206, 76, 0.9);
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  box-shadow: 0 0 20px rgba(151, 206, 76, 0.6);
+  animation: girar 1.2s linear infinite;
+}
+
+.anillo-2 {
+  width: 80%;
+  height: 80%;
+  border-color: rgba(0, 176, 200, 0.8);
+  border-left-color: transparent;
+  border-top-color: transparent;
+  box-shadow: 0 0 15px rgba(0, 176, 200, 0.5);
+  animation: girar 0.9s linear infinite reverse;
+}
+
+.anillo-3 {
+  width: 60%;
+  height: 60%;
+  border-color: rgba(151, 206, 76, 0.7);
+  border-right-color: transparent;
+  box-shadow: 0 0 12px rgba(151, 206, 76, 0.4);
+  animation: girar 0.7s linear infinite;
+}
+
+.anillo-4 {
+  width: 40%;
+  height: 40%;
+  border-color: rgba(0, 176, 200, 0.9);
+  border-bottom-color: transparent;
+  box-shadow: 0 0 10px rgba(0, 176, 200, 0.6);
+  animation: girar 0.5s linear infinite reverse;
+}
+
+.portal-nucleo {
+  width: 22%;
+  height: 22%;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(151, 206, 76, 0.8) 40%,
+    rgba(0, 176, 100, 0.4) 100%
+  );
+  box-shadow:
+    0 0 30px rgba(151, 206, 76, 1),
+    0 0 60px rgba(151, 206, 76, 0.6);
+  animation: pulsaNucleo 0.6s ease-in-out infinite;
+}
+
+.portal-interior {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, transparent 70%);
+  animation: pulsaNucleo 0.6s ease-in-out infinite reverse;
+}
+
+/* ANIMACIONES */
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes pulsaNucleo {
+  0%, 100% { transform: scale(1);    opacity: 0.9; }
+  50%       { transform: scale(1.3); opacity: 1;   }
+}
+
+@keyframes portalAbre {
+  0%   { transform: scale(0) rotate(-180deg); opacity: 0; }
+  60%  { transform: scale(1.1) rotate(10deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg);    opacity: 1; }
+}
+
+@keyframes portalExpande {
+  0%   { transform: scale(1);    opacity: 1; }
+  100% { transform: scale(8);    opacity: 0; }
+}
+
+@keyframes fondoAparece {
+  from { background: transparent; }
+  to   { background: rgba(0, 0, 0, 0.85); }
+}
+
+@keyframes fondoDesaparece {
+  from { background: rgba(0, 0, 0, 0.85); }
+  to   { background: rgba(0, 0, 0, 0); }
+}

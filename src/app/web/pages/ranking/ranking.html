@@ -1,0 +1,77 @@
+<div class="ranking-bg">
+
+  <div class="ranking-header">
+    <button class="btn-volver" (click)="router.navigate(['/'])">{{ 'RANKING.BTN_VOLVER' | translate }}</button>
+    <h2 class="ranking-titulo">🏆 RANKING</h2>
+  </div>
+
+  <!-- Seleccionar juego -->
+  <div class="selector-juego d-flex gap-2 mb-3">
+    @for (j of juegos; track j.id) {
+    <button class="btn-juego" [class.activo]="juegoSeleccionado === j.id" (click)="seleccionarJuego(j.id)">
+      {{ j.label }}
+    </button>
+    }
+  </div>
+
+  <!-- Seleccionar dificultad -->
+  <div class="selector-dificultad d-flex flex-wrap gap-2 mb-4">
+    @for (d of dificultades; track d) {
+    <button class="btn-dif" [class.activo]="dificultadSeleccionada === d" (click)="seleccionarDificultad(d)">
+      {{ d }}
+    </button>
+    }
+  </div>
+
+  <!-- Tabla -->
+  @if (ranking$ | async; as lista) {
+  @if (lista.length === 0) {
+  <div class="empty-msg">
+    {{ 'RANKING.EMPTY' | translate }}
+  </div>
+  } @else {
+  <div class="tabla-card">
+    <table class="table table-dark mb-0">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>{{ 'RANKING.JUGADOR' | translate }}</th>
+          <th>{{ (juegoSeleccionado === 'parejas' ? 'JUEGO.MOVIMIENTOS' : 'JUEGO.FALLOS') | translate }}</th>
+          <th>{{ (juegoSeleccionado === 'trivia' ? 'RANKING.ACIERTOS' : 'RANKING.TIEMPO_RESTANTE') | translate }}</th>
+          <th class="d-none d-md-table-cell">{{ 'RANKING.FECHA' | translate }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of lista; track p.uid + p.fecha; let i = $index) {
+        <tr>
+          <td>
+            @if (i === 0) { <span>🥇</span> }
+            @else if (i === 1) { <span>🥈</span> }
+            @else if (i === 2) { <span>🥉</span> }
+            @else { <span class="text-secondary">{{ i + 1 }}</span> }
+          </td>
+          <td class="text-white fw-semibold">{{ p.nombre }}</td>
+          <td class="text-white">{{ p.movimientos }}</td>
+          <td class="text-info">
+            @if (juegoSeleccionado === 'trivia') {
+            {{ p.tiempo }}
+            } @else {
+            {{ formatearTiempo(p.tiempo) }}
+            }
+          </td>
+          <td class="d-none d-md-table-cell text-secondary small">
+            {{ p.fecha | date:'dd/MM/yy HH:mm' }}
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  }
+  } @else {
+  <div class="text-center py-5">
+    <div class="spinner-border text-warning" role="status"></div>
+  </div>
+  }
+
+</div>
