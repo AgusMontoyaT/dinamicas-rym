@@ -1,6 +1,6 @@
 ﻿{
   "buildCommand": "ng build --configuration production",
-  "outputDirectory": "dist/dinamicasRyM/browser",
+  "outputDirectory": "dist/rickymorty/browser",
   "rewrites": [
     {
       "source": "/(.*)",

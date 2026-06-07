@@ -9,7 +9,7 @@ const createWindow = () => {
     minWidth: 900,
     minHeight: 600,
     // 2. Verifica que esta ruta coincida con tu estructura de carpetas real
-    icon: path.join(__dirname, 'dist/dinamicasRyM/browser/assets/clones-favicon.png'),
+    icon: path.join(__dirname, 'dist/rickymorty/browser/assets/clones-favicon.png'),
     center: true,
     autoHideMenuBar: true,
     webPreferences: {
@@ -24,7 +24,7 @@ const createWindow = () => {
     win.show()
   })
 
-  win.loadFile('dist/dinamicasRyM/browser/index.html')
+  win.loadFile('dist/rickymorty/browser/index.html')
 
   // Bloquear el zoom para que el diseño no se rompa
   win.webContents.on('did-finish-load', () => {
